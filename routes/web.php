@@ -34,8 +34,12 @@ Route::prefix('todo')->group(function(){
 		->where('id', '[0-9]+')
 		->name('todo.update');
 
+	//delete 
+	Route::get('/{id}/delete', 'ToDoController@confirm')
+		->where('id', '[0-9]+')
+		->name('todo.confirm');
+	Route::post('/{id}/delete', 'ToDoController@destroy')
+		->where('id', '[0-9]+')
+		->name('todo.destroy');
 
-
-
-
-})
+});

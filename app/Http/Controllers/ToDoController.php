@@ -14,7 +14,8 @@ class ToDoController extends Controller
      */
     public function index()
     {
-        //
+	    $todos = ToDo::latest('id')->get();
+	    return view('todo.list', ['todos' => $todos]);
     }
 
     /**
@@ -44,9 +45,12 @@ class ToDoController extends Controller
      * @param  \App\ToDo  $toDo
      * @return \Illuminate\Http\Response
      */
-    public function show(ToDo $toDo)
+    public function show(int $id)
     {
-        //
+	    return view(
+	    	'todo.detail',
+		['todo' => ToDo::where('id', $id)->firstOrFail()]
+	    )
     }
 
     /**
